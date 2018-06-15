@@ -60,4 +60,5 @@ def train(model,num_epochs=5, lr=0.0001):
 if __name__=='__main__':
     model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
     model=model.to(device)
-    train(model=model,num_epochs=3)
+    train(model=model,num_epochs=5)
+    torch.save(model.state_dict(), 'model_params.pkl')
