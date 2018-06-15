@@ -63,6 +63,9 @@ class rec_model(nn.Module):
         # movie channel concat
         self.fc_movie_combine = nn.Linear(embed_dim * 2 + 8 * len(kernel_sizes), fc_size)  # tanh
 
+        # BatchNorm layer
+        self.BN = nn.BatchNorm2d(1)
+
     def forward(self, user_input, movie_input):
         # pack train_data
         uid = user_input['uid']
@@ -77,18 +80,18 @@ class rec_model(nn.Module):
             uid, gender, age, job,mid,mtype,mtext = \
             uid.to(device), gender.to(device), age.to(device), job.to(device), mid.to(device), mtype.to(device), mtext.to(device)
         # user channel
-        feature_uid = F.relu(self.fc_uid(self.embedding_uid(uid)))
-        feature_gender = F.relu(self.fc_gender(self.embedding_gender(gender)))
-        feature_age = F.relu(self.fc_age(self.embedding_age(age)))
-        feature_job = F.relu(self.fc_job(self.embedding_job(job)))
+        feature_uid = self.BN(F.relu(self.fc_uid(self.embedding_uid(uid))))
+        feature_gender = self.BN(F.relu(self.fc_gender(self.embedding_gender(gender))))
+        feature_age =  self.BN(F.relu(self.fc_age(self.embedding_age(age))))
+        feature_job = self.BN(F.relu(self.fc_job(self.embedding_job(job))))
 
         feature_user = F.tanh(self.fc_user_combine(
             torch.cat([feature_uid, feature_gender, feature_age, feature_job], 3)
         )).view(-1,1,200)
 
         # movie channel
-        feature_mid = F.relu(self.fc_mid(self.embedding_mid(mid)))
-        feature_mtype = F.relu(self.fc_mtype(self.embedding_mtype_sum(mtype)))
+        feature_mid = self.BN(F.relu(self.fc_mid(self.embedding_mid(mid))))
+        feature_mtype = self.BN(F.relu(self.fc_mtype(self.embedding_mtype_sum(mtype)).view(-1,1,1,32)))
 
         # feature_mid_mtype = torch.cat([feature_mid, feature_mtype], 2)
 

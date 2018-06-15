@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 import torch
 import torch.optim as optim
 import torch.nn as nn
-
+from tensorboardX import SummaryWriter
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # --------------- hyper-parameters------------------
 user_max_dict={
@@ -25,7 +25,7 @@ convParams={
 }
 
 
-def train(model,num_epochs=5, lr=0.1):
+def train(model,num_epochs=5, lr=0.0001):
     loss_function = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(),lr=lr)
 
@@ -33,6 +33,7 @@ def train(model,num_epochs=5, lr=0.1):
     dataloader = DataLoader(datasets,batch_size=256,shuffle=True)
 
     losses=[]
+    writer = SummaryWriter()
     for epoch in range(num_epochs):
         loss_all = 0
         for i_batch,sample_batch in enumerate(dataloader):
@@ -46,13 +47,17 @@ def train(model,num_epochs=5, lr=0.1):
             tag_rank = model(user_inputs, movie_inputs)
 
             loss = loss_function(tag_rank, target)
-            if i_batch%100 ==0:
-                print('loss after 100 batches{}'.format(loss))
+            if i_batch%20 ==0:
+                writer.add_scalar('data/loss', loss, i_batch*20)
+                print(loss)
+
             loss_all += loss
             loss.backward()
             optimizer.step()
         print('Epoch {}:\t loss:{}'.format(epoch,loss_all))
+    writer.export_scalars_to_json("./test.json")
+    writer.close()
 if __name__=='__main__':
     model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
     model=model.to(device)
-    train(model=model)
+    train(model=model,num_epochs=3)

@@ -53,8 +53,30 @@ def simulatorData():
         'mtext': mword
     }
     return (user_inputs, movie_inputs)
+def tensorboardTest():
+    from tensorboardX import SummaryWriter
 
+    writer = SummaryWriter()
+    x = torch.FloatTensor([100])
+    y = torch.FloatTensor([500])
+
+    for epoch in range(100):
+        x /= 1.5
+        y /= 1.5
+        loss = y-x
+        print(loss)
+        writer.add_histogram('zz/x', x, epoch)
+        writer.add_histogram('zz.y', y, epoch)
+        writer.add_scalar('data/x', x, epoch)
+        writer.add_scalar('data/y', y, epoch)
+        writer.add_scalar('data/loss', loss, epoch)
+        writer.add_scalars('data/scalar_group', {'x':x, 'y':y,'loss':loss},epoch)
+        writer.add_text('zz/text', 'zz:this is epoch '+ str(epoch), epoch)
+
+    writer.export_scalars_to_json("./test.json")
+    writer.close()
 if __name__=='__main__':
-    model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
-    user_inputs, movie_inputs = simulatorData()
-    model(user_inputs, movie_inputs)
+    # model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
+    # user_inputs, movie_inputs = simulatorData()
+    # model(user_inputs, movie_inputs)
+    tensorboardTest()

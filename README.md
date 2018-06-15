@@ -1,2 +1,2 @@
 # movie_recommend_system
-a system of movie recommendation
+a system for movie recommendation
