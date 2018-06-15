@@ -2,7 +2,7 @@
 
 ## 1. Glimpse
 
-模型移植至仓库 https://github.com/chengstone/movie_recommender，原作者使用的是TensorFlow-1.0,本仓库得到作者允许后，使用PyTorch-0.4.0的移植版本。这里要感谢原作者对于框架部分的详细实现说明，使得我在复现过程中省去了很多麻烦。 
+模型移植至仓库[https://github.com/chengstone/movie_recommender](https://github.com/chengstone/movie_recommender)，原作者使用的是TensorFlow-1.0,本仓库得到作者允许后，使用PyTorch-0.4.0的移植版本。这里要感谢原作者对于框架部分的详细实现说明，使得我在复现过程中省去了很多麻烦。 
 
  模型使用了 **movieLens-1m** 的数据集进行训练，建模用户-电影-评分数据，欲实现给定用户和电影ID，预测用户对于电影的评分。在推荐系统领域，就是一个 **rating** 的任务。
 
