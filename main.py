@@ -44,7 +44,7 @@ def train(model,num_epochs=5, lr=0.0001):
 
             model.zero_grad()
 
-            tag_rank = model(user_inputs, movie_inputs)
+            tag_rank , _ , _ = model(user_inputs, movie_inputs)
 
             loss = loss_function(tag_rank, target)
             if i_batch%20 ==0:
@@ -57,6 +57,9 @@ def train(model,num_epochs=5, lr=0.0001):
         print('Epoch {}:\t loss:{}'.format(epoch,loss_all))
     writer.export_scalars_to_json("./test.json")
     writer.close()
+
+
+
 if __name__=='__main__':
     model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
     model=model.to(device)

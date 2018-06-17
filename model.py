@@ -85,6 +85,7 @@ class rec_model(nn.Module):
         feature_age =  self.BN(F.relu(self.fc_age(self.embedding_age(age))))
         feature_job = self.BN(F.relu(self.fc_job(self.embedding_job(job))))
 
+        # feature_user B x 1 x 200
         feature_user = F.tanh(self.fc_user_combine(
             torch.cat([feature_uid, feature_gender, feature_age, feature_job], 3)
         )).view(-1,1,200)
@@ -103,10 +104,11 @@ class rec_model(nn.Module):
 
         feature_flattern_dropout = F.dropout(torch.cat(flattern_tensors,2), p=0.5)  # to B x 32
 
+        # feature_movie B x 1 x 200
         feature_movie = F.tanh(self.fc_movie_combine(
             torch.cat([feature_mid.view(-1,1,32), feature_mtype.view(-1,1,32), feature_flattern_dropout], 2)
         ))
 
         output = torch.sum(feature_user * feature_movie, 2)  # B x rank
-        return output
+        return output, feature_user, feature_movie
 
