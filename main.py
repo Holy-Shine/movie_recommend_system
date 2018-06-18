@@ -63,5 +63,18 @@ def train(model,num_epochs=5, lr=0.0001):
 if __name__=='__main__':
     model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
     model=model.to(device)
-    train(model=model,num_epochs=5)
-    torch.save(model.state_dict(), 'model_params.pkl')
+
+    # train model
+    #train(model=model,num_epochs=1)
+    #torch.save(model.state_dict(), 'Params/model_params.pkl')
+
+    # get user and movie feature
+    # model.load_state_dict(torch.load('Params/model_params.pkl'))
+    # from recInterface import saveMovieAndUserFeature
+    # saveMovieAndUserFeature(model=model)
+
+
+    # test recsys
+    from recInterface import getKNNitem,getUserMostLike
+    print(getKNNitem(itemID=100,K=10))
+    print(getUserMostLike(uid=100))
