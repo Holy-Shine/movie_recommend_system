@@ -146,6 +146,58 @@ self.fc_movie_combine = nn.Linear(embed_dim * 2 + 8 * len(kernel_sizes), fc_size
 
 
 
-## 5. 待续
+## 5. 快速开始
 
-可能会有改动补充，待续.
+`main.py`里main函数的注释部分基本就足够运行程序了。
+
+- **训练模型**
+
+  ```python
+  # 构建模型
+  model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
+  model=model.to(device)
+  
+  # 训练模型
+  train(model=model,num_epochs=1)   # num_epochs控制训练轮数
+  # 保存训练后的模型参数
+  torch.save(model.state_dict(), 'Params/model_params.pkl')
+  ```
+
+  
+
+- **保存用户和电影特征**
+
+  调用 `recInterface.py` 里的接口。实际上就是将数据输入一遍**已经训练好**的网络，保存中间结果到本地。
+
+  ```python
+  # 同样是先构建模型
+  model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
+  model=model.to(device)
+  
+  # 加载本地保存好的模型参数
+  model.load_state_dict(torch.load("Params/model_params.pkl"))
+  # 调用接口
+  from recInterface import saveMovieAndUserFeature
+  saveMovieAndUserFeature(model=model)
+  ```
+
+  
+
+- **使用recInterface获取相关推荐**
+
+  注意：使用这个接口的前提是已经保存了用户和电影特征
+
+  目前只有两个功能：
+
+  - `getKNNitem(itemID,itemName='movie',K=1)` ：获取K近邻的用户或者电影。默认为电影，默认的K为1
+
+  - `getUserMostLike(uid)`: 获取id为uid的用户最喜欢的电影(cosine距离最小的那个)
+
+    ```python
+    # 调用接口
+    from recInterface import getKNNitem, getUserMostLike
+    itemlist = getKNNitem(itemID=100,K=10)
+    movieID = getUserMostLike(uid=100)
+    ```
+
+    
