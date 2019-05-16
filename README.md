@@ -4,11 +4,15 @@
 
 ## 目录
 
-- [**1.Glimpse**](#sec1)：模型一瞥
-- **2.模型概览**：模型结构
-- **3.代码构成**：整体文件结构
-- **4.代码实现**：代码实现细节
-- **5.快速开始**：简单使用教程
+1. [**Glimpse**](#sec1)：模型一瞥
+
+2. [**模型概览**](#sec2)：模型结构
+
+3. [**代码构成**](#sec3)：整体文件结构
+
+4. [**代码实现**](#sec4)：代码实现细节
+
+5. [**快速开始**](#sec5)：简单使用教程
 
 ## <span id="sec1">1. Glimpse</span>
 
@@ -18,7 +22,7 @@
 
 
 
-## 2.模型概览
+## <span id="sec2">2.模型概览</span>
 
 ![](https://markdownfoto-1252952266.cos.ap-guangzhou.myqcloud.com/Github/model.001.jpeg)
 
@@ -34,7 +38,7 @@
 
 
 
-## 3. 代码构成
+## <span id="sec3">3. 代码构成<span>
 
 在说明具体实现前，先来讲下代码的构成。  
 
@@ -54,7 +58,7 @@
 
 
 
-## 4. 模型实现
+## <span id="sec4">4. 模型实现</span>
 
 模型为用户-电影双通道。
 
@@ -154,7 +158,7 @@ self.fc_movie_combine = nn.Linear(embed_dim * 2 + 8 * len(kernel_sizes), fc_size
 
 
 
-## 5. 快速开始
+## <span id="sec5">5. 快速开始</span>
 
 `main.py`里main函数的注释部分基本就足够运行程序了。
 
