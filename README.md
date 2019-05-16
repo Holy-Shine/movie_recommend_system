@@ -2,6 +2,14 @@
 
 一个简单的电影推荐系统。  
 
+# 目录
+
+- [**1.Glimpse**](## 1. Glimpse)：模型一瞥
+- **2.模型概览**：模型结构
+- **3.代码构成**：整体文件结构
+- **4.代码实现**：代码实现细节
+- **5.快速开始**：简单使用教程
+
 ## 1. Glimpse
 
 模型移植至仓库[https://github.com/chengstone/movie_recommender](https://github.com/chengstone/movie_recommender)，原作者使用的是TensorFlow-1.0,本仓库得到作者允许后，使用PyTorch-0.4.0的移植版本。这里要感谢原作者对于框架部分的详细实现说明，使得我在复现过程中省去了很多麻烦。 
