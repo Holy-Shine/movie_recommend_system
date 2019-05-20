@@ -1,3 +1,7 @@
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg'></a><a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg'></a>
+
+## 更新日志
+
 - 2018-6-17 更新推荐方法接口
 
 一个简单的电影推荐系统。  
@@ -10,7 +14,7 @@
 
 3. [**代码构成**](#sec3)：整体文件结构
 
-4. [**代码实现**](#sec4)：代码实现细节
+4. [**模型实现**](#sec4)：模型实现细节
 
 5. [**快速开始**](#sec5)：简单使用教程
 
