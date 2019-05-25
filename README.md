@@ -1,4 +1,4 @@
-<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg'></a><a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg'></a>
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg'></a> <a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg'></a>
 
 ## 更新日志
 
