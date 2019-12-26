@@ -1,31 +1,38 @@
 from torch.utils.data import Dataset
 import pickle as pkl
 import torch
-from pandas import DataFrame
+import pandas as pd
+from pandas import DataFrame as df
 
 class MovieRankDataset(Dataset):
 
-    def __init__(self, pkl_file):
+    def __init__(self, pkl_file, drop_dup=False):
 
-        self.dataFrame = pkl.load(open(pkl_file,'rb'))
+        df = pkl.load(open(pkl_file,'rb'))
+        if drop_dup == True:
+            df_user = df.drop_duplicates(['user_id'])
+            df_movie = df.drop_duplicates(['movie_id'])
+            self.dataFrame = pd.concat((df_user, df_movie), axis=0)
+        else:
+            self.dataFrame = df
     def __len__(self):
         return len(self.dataFrame)
 
     def __getitem__(self, idx):
 
         # user data
-        uid = self.dataFrame.ix[idx]['user_id']
-        gender = self.dataFrame.ix[idx]['user_gender']
-        age = self.dataFrame.ix[idx]['user_age']
-        job = self.dataFrame.ix[idx]['user_job']
+        uid =    self.dataFrame.iloc[idx,0]
+        gender = self.dataFrame.iloc[idx,3]
+        age =    self.dataFrame.iloc[idx,4]
+        job =    self.dataFrame.iloc[idx,5]
 
         # movie data
-        mid = self.dataFrame.ix[idx]['movie_id']
-        mtype=self.dataFrame.ix[idx]['movie_type']
-        mtext=self.dataFrame.ix[idx]['movie_title']
+        mid = self.dataFrame.iloc[idx,1]
+        mtype=self.dataFrame.iloc[idx,7]
+        mtext=self.dataFrame.iloc[idx,6]
 
         # target
-        rank = torch.FloatTensor([self.dataFrame.ix[idx]['rank']])
+        rank = torch.FloatTensor([self.dataFrame.iloc[idx,2]])
         user_inputs = {
             'uid': torch.LongTensor([uid]).view(1,-1),
             'gender': torch.LongTensor([gender]).view(1,-1),

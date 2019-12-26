@@ -15,7 +15,7 @@ def saveMovieAndUserFeature(model):
 
     batch_size = 256
 
-    datasets = MovieRankDataset(pkl_file='data.p')
+    datasets = MovieRankDataset(pkl_file='data.p',drop_dup=True)
     dataloader = DataLoader(datasets, batch_size=batch_size, shuffle=False,num_workers=4)
 
     # format: {id(int) : feature(numpy array)}
@@ -52,14 +52,16 @@ def saveMovieAndUserFeature(model):
                 if mid.item() not in movies.keys():
                     movies[mid.item()]={'mid':mid,'mtype':mtype, 'mtext':mtext}
 
-                if uid not in user_feature_dict.keys():
-                    user_feature_dict[uid]=feature_user[i]
-                if mid not in movie_feature_dict.keys():
-                    movie_feature_dict[mid]=feature_movie[i]
+                if uid.item() not in user_feature_dict.keys():
+                    user_feature_dict[uid.item()]=feature_user[i]
+                if mid.item() not in movie_feature_dict.keys():
+                    movie_feature_dict[mid.item()]=feature_movie[i]
 
             print('Solved: {} samples'.format((i_batch+1)*batch_size))
     feature_data = {'feature_user': user_feature_dict, 'feature_movie':movie_feature_dict}
     dict_user_movie={'user': users, 'movie':movies}
+    print(len(dict_user_movie['user']))
+    print(len(feature_data['feature_movie']))
     pkl.dump(feature_data,open('Params/feature_data.pkl','wb'))
     pkl.dump(dict_user_movie, open('Params/user_movie_dict.pkl','wb'))
 

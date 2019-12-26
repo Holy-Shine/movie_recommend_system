@@ -79,4 +79,8 @@ if __name__=='__main__':
     # model = rec_model(user_max_dict=user_max_dict, movie_max_dict=movie_max_dict, convParams=convParams)
     # user_inputs, movie_inputs = simulatorData()
     # model(user_inputs, movie_inputs)
-    tensorboardTest()
+    # tensorboardTest()
+    import pickle as pkl 
+    import numpy as np 
+    a = np.zeros((10000,200))
+    pkl.dump(a, open('test.p','wb'))
