@@ -3,6 +3,7 @@
 ## 更新日志
 
 - 2018-6-17 更新推荐方法接口
+- 2022-4-26 更新了`jupyter-notebook`版本
 
 一个简单的电影推荐系统。  
 
@@ -17,6 +18,7 @@
 4. [**模型实现**](#sec4)：模型实现细节
 
 5. [**快速开始**](#sec5)：简单使用教程
+6. [**jupyter-notebook**](#sec6)：notebook简单使用
 
 ## <span id="sec1">1. Glimpse</span>
 
@@ -216,4 +218,24 @@ self.fc_movie_combine = nn.Linear(embed_dim * 2 + 8 * len(kernel_sizes), fc_size
     movieID = getUserMostLike(uid=100)
     ```
 
-    
+
+
+## <span id="sec6">6. Notebook使用</span>
+
+进入`jupyter`文件夹
+
+```bash
+pip install -r requirements.txt
+```
+
+然后：
+
+```bash
+jupyter notebook
+```
+
+打开浏览器即可。
+
+
+
+jupyter notebook只提供了训练部分的逻辑，并且用tensorboardX记录了训练损失，请自行查找tensorboardX教程。
