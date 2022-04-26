@@ -1,5 +1,18 @@
 <a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg?style=flat-square"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg?style=flat-square'></a> <a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg?style=flat-square'></a> [![HitCount](http://hits.dwyl.io/Holy-Shine/movie_recommend_system.svg)](http://hits.dwyl.io/Holy-Shine/movie_recommend_system)
 
+## 建议
+
+因为原始仓库比较老了，**建议大家使用最新的`jupyter-notebook`版本来训练模型**。
+
+`jupyter`版本的代码经过我本地测试是没有问题的，测试环境如下：
+
+- `pytorch:1.9.0`
+- `cuda10.2`
+- `cudnn7`
+- `python 3.7.0`
+
+
+
 ## 更新日志
 
 - 2018-6-17 更新推荐方法接口
