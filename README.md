@@ -11,6 +11,8 @@
 - `cudnn7`
 - `python 3.7.0`
 
+> **注意：**
+> 如果没有GPU跑的话，在训练的时候指定`device=torch.device("cpu")` 即可 
 
 
 ## 更新日志
