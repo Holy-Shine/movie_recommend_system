@@ -1,4 +1,4 @@
-<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg?style=flat-square"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg?style=flat-square'></a> <a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg?style=flat-square'></a> [![HitCount](http://hits.dwyl.io/Holy-Shine/movie_recommend_system.svg)](http://hits.dwyl.io/Holy-Shine/movie_recommend_system)
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg?style=flat-square"></a> <a href='https://pytorch.org/'><img src='https://img.shields.io/badge/PyTorch-0.4.0-blue.svg?style=flat-square'></a> <a href='https://www.python.org/'><img src='https://img.shields.io/badge/python-3.5-green.svg?style=flat-square'></a> 
 
 ## 建议
 
